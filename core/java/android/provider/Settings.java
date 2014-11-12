@@ -4890,6 +4890,15 @@ public final class Settings {
         private static final Validator SHOW_QS_CLOCK_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Enable/Disable screenshot sound
+         * @hide
+         */
+        public static final String SCREENSHOT_SOUND = "screenshot_sound";
+        /** @hide */
+        private static final Validator SCREENSHOT_SOUND_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4999,6 +5008,7 @@ public final class Settings {
             STATUS_BAR_CLOCK_SIZE,
             STATUS_BAR_CLOCK_FONT_STYLE,
             SHOW_QS_CLOCK,
+            SCREENSHOT_SOUND,
         };
 
         /**
@@ -5163,6 +5173,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_SIZE);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_FONT_STYLE);
             PRIVATE_SETTINGS.add(SHOW_QS_CLOCK);
+            PRIVATE_SETTINGS.add(SCREENSHOT_SOUND);
         }
 
         /**
@@ -5299,6 +5310,7 @@ public final class Settings {
             VALIDATORS.put(STATUS_BAR_CLOCK_SIZE, STATUS_BAR_CLOCK_SIZE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_CLOCK_FONT_STYLE, STATUS_BAR_CLOCK_FONT_STYLE_VALIDATOR);
             VALIDATORS.put(SHOW_QS_CLOCK, SHOW_QS_CLOCK_VALIDATOR);
+            VALIDATORS.put(SCREENSHOT_SOUND, SCREENSHOT_SOUND_VALIDATOR);
         }
 
         /**
