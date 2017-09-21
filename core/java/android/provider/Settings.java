@@ -4733,7 +4733,15 @@ public final class Settings {
         private static final Validator NETWORK_TRAFFIC_LOCATION_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
-         * What to show in network traffic indicator in statusbar
+         * Number of qs rows on landscape orientation
+         * @hide
+         */
+        public static final String OMNI_QS_LAYOUT_ROWS_LANDSCAPE = "qs_layout_rows_landscape";
+
+        /** @hide */
+        private static final Validator OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * @hide
          */
         public static final String NETWORK_TRAFFIC_TYPE = "network_traffic_type";
@@ -4864,6 +4872,11 @@ public final class Settings {
             NETWORK_TRAFFIC_REFRESH_INTERVAL,
             NETWORK_TRAFFIC_HIDEARROW,
             NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
+            THREE_FINGER_GESTURE,
+            OMNI_QS_LAYOUT_ROWS_LANDSCAPE,
+            OMNI_QS_LAYOUT_ROWS,
+            OMNI_QS_QUICKBAR_COLUMNS,
+            BATTERY_PCT_WITH_ESTIMATE,
         };
 
         /**
@@ -5015,6 +5028,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_REFRESH_INTERVAL);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_HIDEARROW);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE);
+            PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
+            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS);
+            PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
+            PRIVATE_SETTINGS.add(BATTERY_PCT_WITH_ESTIMATE);
         }
 
         /**
@@ -5139,6 +5157,10 @@ public final class Settings {
             VALIDATORS.put(NETWORK_TRAFFIC_REFRESH_INTERVAL, NETWORK_TRAFFIC_REFRESH_INTERVAL_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_HIDEARROW, NETWORK_TRAFFIC_HIDEARROW_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE, NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE_VALIDATOR);
+            VALIDATORS.put(THREE_FINGER_GESTURE, THREE_FINGER_GESTURE_VALIDATOR);
+            VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, OMNI_QS_LAYOUT_ROWS_VALIDATOR);
+            VALIDATORS.put(BATTERY_PCT_WITH_ESTIMATE, BATTERY_PCT_WITH_ESTIMATE_VALIDATOR);
+            VALIDATORS.put(OMNI_QS_LAYOUT_ROWS_LANDSCAPE, OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);
         }
 
         /**
