@@ -132,6 +132,26 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private BatteryMeterView mBatteryRemainingIcon;
     private NetworkTraffic mTraffic;
 
+    private class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = getContext().getContentResolver();
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.SHOW_QS_CLOCK), false,
+                    this, UserHandle.USER_ALL);
+            }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+    }
+
+    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
+
     private final BroadcastReceiver mRingerReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -153,6 +173,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mActivityStarter = activityStarter;
         mDualToneHandler = new DualToneHandler(
                 new ContextThemeWrapper(context, R.style.QSHeaderTheme));
+        mSettingsObserver.observe();
     }
 
     @Override
@@ -197,7 +218,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         mClockView = findViewById(R.id.clock);
         mClockView.setOnClickListener(this);
-        mClockView.setClockHideableByUser(false);
         mClockView.setQsHeader();
         mDateView = findViewById(R.id.date);
         mTraffic = findViewById(R.id.networkTraffic);
@@ -211,6 +231,26 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
+
+        mPermissionsHubEnabled = PrivacyItemControllerKt.isPermissionsHubEnabled();
+        // Change the ignored slots when DeviceConfig flag changes
+        DeviceConfig.addOnPropertyChangedListener(DeviceConfig.NAMESPACE_PRIVACY,
+                mContext.getMainExecutor(), mPropertyListener);
+
+    }
+
+    private List<String> getIgnoredIconSlots() {
+        ArrayList<String> ignored = new ArrayList<>();
+        ignored.add(mContext.getResources().getString(
+                com.android.internal.R.string.status_bar_camera));
+        ignored.add(mContext.getResources().getString(
+                com.android.internal.R.string.status_bar_microphone));
+        if (mPermissionsHubEnabled) {
+            ignored.add(mContext.getResources().getString(
+                    com.android.internal.R.string.status_bar_location));
+        }
+
+        return ignored;
     }
 
     private void updateStatusText() {
@@ -332,6 +372,18 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         updateStatusIconAlphaAnimator();
         updateHeaderTextContainerAlphaAnimator();
+    }
+
+    private void updateSettings() {
+        updateQSClock();
+        updateResources();
+    }
+
+    private void updateQSClock() {
+        int show = Settings.System.getInt(mContext.getContentResolver(),
+        Settings.System.SHOW_QS_CLOCK, 1);
+        mClockView.setClockVisibleByUser(show == null ? true :
+                Integer.valueOf(show) != 0);
     }
 
     private void updateStatusIconAlphaAnimator() {
