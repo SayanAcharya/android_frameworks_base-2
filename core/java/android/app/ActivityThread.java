@@ -6606,7 +6606,6 @@ public final class ActivityThread extends ClientTransactionHandler {
             throw ex.rethrowFromSystemServer();
         }
         if (holder == null) {
-            Slog.e(TAG, "Failed to find provider info for " + auth);
             return null;
         }
 
