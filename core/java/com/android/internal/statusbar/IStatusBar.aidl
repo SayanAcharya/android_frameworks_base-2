@@ -174,7 +174,7 @@ oneway interface IStatusBar
     void onRecentsAnimationStateChanged(boolean running);
 
     /**
-     * Nitrogen
+     * Reloaded
      */
     void toggleCameraFlash();
 }

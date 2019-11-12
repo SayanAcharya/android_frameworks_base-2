@@ -112,7 +112,7 @@ interface IStatusBarService
     void hideBiometricDialog();
 
     /**
-     * Nitrogen
+     * Reloaded
      */
     void toggleCameraFlash();
 }
