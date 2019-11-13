@@ -2071,17 +2071,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mRingerToggleChord = Settings.Secure.VOLUME_HUSH_OFF;
             }
 
-<<<<<<< HEAD
             //Three Finger Gesture
             boolean threeFingerGesture = Settings.System.getIntForUser(resolver,
                     Settings.System.THREE_FINGER_GESTURE, 0, UserHandle.USER_CURRENT) == 1;
             enableSwipeThreeFingerGesture(threeFingerGesture);
-=======
 
             // volume rocker wake
             mVolumeRockerWake = Settings.System.getIntForUser(resolver,
                     Settings.System.VOLUME_ROCKER_WAKE, 0, UserHandle.USER_CURRENT) != 0;
->>>>>>> 2c6f1d34585... Volume Rocker Wake [1/2]
 
             // Configure wake gesture.
             boolean wakeGestureEnabledSetting = Settings.Secure.getIntForUser(resolver,
