@@ -99,7 +99,7 @@ public class QSFactoryImpl implements QSFactory {
             Provider<NightDisplayTile> nightDisplayTileProvider,
             Provider<NfcTile> nfcTileProvider,
             Provider<GarbageMonitor.MemoryTile> memoryTileProvider,
-            Provider<UiModeNightTile> uiModeNightTileProvider) {
+            Provider<UiModeNightTile> uiModeNightTileProvider,
             Provider<ScreenshotTile> screenshotTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;

@@ -211,7 +211,7 @@ import com.android.internal.util.ArrayUtils;
 import com.android.internal.util.reloaded.ReloadedUtils;
 import com.android.server.ExtconStateObserver;
 import com.android.server.ExtconUEventObserver;
-import com.android.internal.util.nitrogen.NitrogenUtils;
+import com.android.internal.util.reloaded.ReloadedUtils;
 import com.android.internal.util.ScreenshotHelper;
 import com.android.internal.util.ScreenShapeHelper;
 import com.android.server.GestureLauncherService;
@@ -3877,7 +3877,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         Slog.i(TAG, "isActivityLaunchEvent from DeviceKeyHandler " + eventLaunchActivity);
                     }
                     wakeUp(event.getEventTime(), mAllowTheaterModeWakeFromKey, PowerManager.WAKE_REASON_WAKE_KEY, "android.policy:KEY");
-                    NitrogenUtils.launchKeyguardDismissIntent(mContext, UserHandle.CURRENT, eventLaunchActivity);
+                    ReloadedUtils.launchKeyguardDismissIntent(mContext, UserHandle.CURRENT, eventLaunchActivity);
                     result &= ~ACTION_PASS_TO_USER;
                     return result;
                 }

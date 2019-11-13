@@ -732,7 +732,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         if (mTileLayout != null) {
             v.setOnClickListener(view -> {
                     t.click();
-                    setAnimationTile(v);
             });
         }
     }
