@@ -2674,7 +2674,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             return AnimationUtils.loadAnimation(mContext, R.anim.lock_screen_behind_enter_fade_in);
         }
 
-        AnimationSet set = (AnimationSet) Animat ionUtils.loadAnimation(mContext, onWallpaper ?
+        AnimationSet set = (AnimationSet) Animat ReloadedUtils.loadAnimation(mContext, onWallpaper ?
                     R.anim.lock_screen_behind_enter_wallpaper :
                     R.anim.lock_screen_behind_enter);
 
