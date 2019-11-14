@@ -341,13 +341,13 @@ public class QSCustomizer extends LinearLayout implements OnMenuItemClickListene
                    UserHandle.USER_CURRENT);
         } else if (id == R.id.menu_item_rows_one) {
             Settings.System.putIntForUser(mContext.getContentResolver(),
-                    Settings.System.OMNI_QS_LAYOUT_ROWS, 1, UserHandle.USER_CURRENT);
+                    Settings.System.QS_LAYOUT_ROWS, 1, UserHandle.USER_CURRENT);
         } else if (id == R.id.menu_item_rows_two) {
             Settings.System.putIntForUser(mContext.getContentResolver(),
-                    Settings.System.OMNI_QS_LAYOUT_ROWS, 2, UserHandle.USER_CURRENT);
+                    Settings.System.QS_LAYOUT_ROWS, 2, UserHandle.USER_CURRENT);
         } else if (id == R.id.menu_item_rows_three) {
             Settings.System.putIntForUser(mContext.getContentResolver(),
-                    Settings.System.OMNI_QS_LAYOUT_ROWS, 3, UserHandle.USER_CURRENT);
+                    Settings.System.QS_LAYOUT_ROWS, 3, UserHandle.USER_CURRENT);
         } else if (id == R.id.menu_item_rows_landscape_one) {
             Settings.System.putIntForUser(mContext.getContentResolver(),
                     Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, 1, UserHandle.USER_CURRENT);
@@ -486,7 +486,7 @@ public class QSCustomizer extends LinearLayout implements OnMenuItemClickListene
                 mContext.getContentResolver(), Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE, defaultColumns,
                 UserHandle.USER_CURRENT);
         int rows = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS, defaultRows,
+                mContext.getContentResolver(), Settings.System.QS_LAYOUT_ROWS, defaultRows,
                 UserHandle.USER_CURRENT);
         int rowsLandscape = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, defaultRows,
@@ -546,7 +546,7 @@ public class QSCustomizer extends LinearLayout implements OnMenuItemClickListene
 
     private void updateRowsMenu(int defaultRows) {
         int rows = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS, defaultRows,
+                mContext.getContentResolver(), Settings.System.QS_LAYOUT_ROWS, defaultRows,
                 UserHandle.USER_CURRENT);
         MenuItem menuItemOne = mToolbar.getMenu().findItem(R.id.menu_item_rows_one);
         menuItemOne.setChecked(rows == 1);

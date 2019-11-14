@@ -38,6 +38,11 @@ import android.service.notification.ZenModeConfig;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.os.Handler;
+import android.os.UserHandle;
+import android.database.ContentObserver;
+import android.content.ContentResolver;
+import android.provider.Settings;
 import android.util.Pair;
 import android.view.ContextThemeWrapper;
 import android.view.DisplayCutout;
@@ -232,25 +237,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
 
-        mPermissionsHubEnabled = PrivacyItemControllerKt.isPermissionsHubEnabled();
-        // Change the ignored slots when DeviceConfig flag changes
-        DeviceConfig.addOnPropertyChangedListener(DeviceConfig.NAMESPACE_PRIVACY,
-                mContext.getMainExecutor(), mPropertyListener);
-
-    }
-
-    private List<String> getIgnoredIconSlots() {
-        ArrayList<String> ignored = new ArrayList<>();
-        ignored.add(mContext.getResources().getString(
-                com.android.internal.R.string.status_bar_camera));
-        ignored.add(mContext.getResources().getString(
-                com.android.internal.R.string.status_bar_microphone));
-        if (mPermissionsHubEnabled) {
-            ignored.add(mContext.getResources().getString(
-                    com.android.internal.R.string.status_bar_location));
-        }
-
-        return ignored;
     }
 
     private void updateStatusText() {
@@ -382,8 +368,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private void updateQSClock() {
         int show = Settings.System.getInt(mContext.getContentResolver(),
         Settings.System.SHOW_QS_CLOCK, 1);
-        mClockView.setClockVisibleByUser(show == null ? true :
-                Integer.valueOf(show) != 0);
+        mClockView.setClockVisibleByUser(show == 1);
     }
 
     private void updateStatusIconAlphaAnimator() {
