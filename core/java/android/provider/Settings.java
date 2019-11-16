@@ -4915,6 +4915,10 @@ public final class Settings {
          /** @hide */
         private static final Validator OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR =
                 ANY_STRING_VALIDATOR;
+
+        public static final String OMNI_QS_LAYOUT_ROWS = "omni_qs_layout_rows";
+
+        private static final Validator OMNI_QS_LAYOUT_ROWS_VALIDATOR = ANY_INTEGER_VALIDATOR;
          /**
          * @hide
          */
@@ -5084,6 +5088,7 @@ public final class Settings {
             DOUBLE_TAP_SLEEP_GESTURE,
             DOUBLE_TAP_SLEEP_LOCKSCREEN,
             OMNI_QS_LAYOUT_ROWS_LANDSCAPE,
+            OMNI_QS_LAYOUT_ROWS,
         };
 
         /**
@@ -5254,6 +5259,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS);
         }
 
         /**
@@ -5401,6 +5407,7 @@ public final class Settings {
             VALIDATORS.put(DOUBLE_TAP_SLEEP_LOCKSCREEN,
                     DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_ROWS_LANDSCAPE, OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);
+            VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, OMNI_QS_LAYOUT_ROWS_VALIDATOR);
         }
 
         /**
