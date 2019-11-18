@@ -4976,6 +4976,17 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Volume call answer
+         * @hide
+         */
+        public static final String VOLUME_ANSWER_CALL =
+                "volume_answer_call";
+
+        /** @hide */
+        private static final Validator VOLUME_ANSWER_CALL_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5089,6 +5100,7 @@ public final class Settings {
             DOUBLE_TAP_SLEEP_LOCKSCREEN,
             OMNI_QS_LAYOUT_ROWS_LANDSCAPE,
             OMNI_QS_LAYOUT_ROWS,
+            VOLUME_ANSWER_CALL,
         };
 
         /**
@@ -5258,8 +5270,12 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
+<<<<<<< HEAD
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS_LANDSCAPE);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS);
+=======
+            PRIVATE_SETTINGS.add(VOLUME_ANSWER_CALL);
+>>>>>>> bd79a4333524cff135d91abcdeb197eba9b20481
         }
 
         /**
@@ -5406,8 +5422,12 @@ public final class Settings {
                     DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
             VALIDATORS.put(DOUBLE_TAP_SLEEP_LOCKSCREEN,
                     DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
+<<<<<<< HEAD
             VALIDATORS.put(OMNI_QS_LAYOUT_ROWS_LANDSCAPE, OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, OMNI_QS_LAYOUT_ROWS_VALIDATOR);
+=======
+            VALIDATORS.put(VOLUME_ANSWER_CALL, VOLUME_ANSWER_CALL_VALIDATOR);
+>>>>>>> bd79a4333524cff135d91abcdeb197eba9b20481
         }
 
         /**
