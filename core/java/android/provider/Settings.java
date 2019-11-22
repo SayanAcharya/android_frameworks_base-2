@@ -4809,6 +4809,16 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to display screenrecord in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_SCREENRECORD = "powermenu_screenrecord";
+        /** @hide */
+        private static final Validator POWERMENU_SCREENRECORD_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Whether to display settings in the power menu
          *
          * @hide
@@ -4974,6 +4984,13 @@ public final class Settings {
         /** @hide */
         private static final Validator DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+        /**
+         * Wheter to play notification sound and vibration if screen is ON
+         * 0 - never
+         * 1 - always
+         * @hide
+         */
+        public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
 
         /**
          * Volume call answer
@@ -5082,6 +5099,7 @@ public final class Settings {
             NETWORK_TRAFFIC_HIDEARROW,
             POWERMENU_SOUNDPANEL,
             POWERMENU_SCREENSHOT,
+            POWERMENU_SCREENRECORD,
             POWERMENU_SETTINGS,
             POWERMENU_LOCKDOWN,
             POWERMENU_AIRPLANE,
@@ -5254,6 +5272,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_HIDEARROW);
             PRIVATE_SETTINGS.add(POWERMENU_SOUNDPANEL);
             PRIVATE_SETTINGS.add(POWERMENU_SCREENSHOT);
+            PRIVATE_SETTINGS.add(POWERMENU_SCREENRECORD);
             PRIVATE_SETTINGS.add(POWERMENU_SETTINGS);
             PRIVATE_SETTINGS.add(POWERMENU_LOCKDOWN);
             PRIVATE_SETTINGS.add(POWERMENU_AIRPLANE);
@@ -5400,6 +5419,7 @@ public final class Settings {
             VALIDATORS.put(NETWORK_TRAFFIC_HIDEARROW, NETWORK_TRAFFIC_HIDEARROW_VALIDATOR);
             VALIDATORS.put(POWERMENU_SOUNDPANEL, POWERMENU_SOUNDPANEL_VALIDATOR);
             VALIDATORS.put(POWERMENU_SCREENSHOT, POWERMENU_SCREENSHOT_VALIDATOR);
+            VALIDATORS.put(POWERMENU_SCREENRECORD, POWERMENU_SCREENRECORD_VALIDATOR);
             VALIDATORS.put(POWERMENU_SETTINGS, POWERMENU_SETTINGS_VALIDATOR);
             VALIDATORS.put(POWERMENU_LOCKDOWN, POWERMENU_LOCKDOWN_VALIDATOR);
             VALIDATORS.put(POWERMENU_AIRPLANE, POWERMENU_AIRPLANE_VALIDATOR);

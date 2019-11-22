@@ -400,6 +400,8 @@ public class NotificationManagerService extends SystemService {
     protected boolean mInCallStateOffHook = false;
     boolean mNotificationPulseEnabled;
 
+    private boolean mSoundVibScreenOn;
+
     private Uri mInCallNotificationUri;
     private AudioAttributes mInCallNotificationAudioAttributes;
     private float mInCallNotificationVolume;
@@ -1364,6 +1366,8 @@ public class NotificationManagerService extends SystemService {
                 = Settings.System.getUriFor(Settings.System.NOTIFICATION_LIGHT_PULSE);
         private final Uri NOTIFICATION_RATE_LIMIT_URI
                 = Settings.Global.getUriFor(Settings.Global.MAX_NOTIFICATION_ENQUEUE_RATE);
+        private final Uri NOTIFICATION_SOUND_VIB_SCREEN_ON
+                = Settings.System.getUriFor(Settings.System.NOTIFICATION_SOUND_VIB_SCREEN_ON);
 
         SettingsObserver(Handler handler) {
             super(handler);
@@ -1378,6 +1382,8 @@ public class NotificationManagerService extends SystemService {
             resolver.registerContentObserver(NOTIFICATION_RATE_LIMIT_URI,
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(NOTIFICATION_BUBBLES_URI,
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(NOTIFICATION_SOUND_VIB_SCREEN_ON,
                     false, this, UserHandle.USER_ALL);
             update(null);
         }
@@ -1406,6 +1412,11 @@ public class NotificationManagerService extends SystemService {
             }
             if (uri == null || NOTIFICATION_BUBBLES_URI.equals(uri)) {
                 mPreferencesHelper.updateBubblesEnabled();
+            }
+            if (uri == null || NOTIFICATION_SOUND_VIB_SCREEN_ON.equals(uri)) {
+                mSoundVibScreenOn = Settings.System.getIntForUser(resolver,
+                        Settings.System.NOTIFICATION_SOUND_VIB_SCREEN_ON, 1,
+                        UserHandle.USER_CURRENT) == 1;
             }
         }
     }
@@ -5696,8 +5707,10 @@ public class NotificationManagerService extends SystemService {
         }
 
         if (aboveThreshold && isNotificationForCurrentUser(record)) {
-
-            if (mSystemReady && mAudioManager != null) {
+            boolean beNoisy = !mScreenOn
+                    // if mScreenOn && !mSoundVibScreenOn never be noisy
+                    || (mScreenOn && mSoundVibScreenOn);
+            if (mSystemReady && mAudioManager != null && beNoisy) {
                 Uri soundUri = record.getSound();
                 hasValidSound = soundUri != null && !Uri.EMPTY.equals(soundUri);
                 long[] vibration = record.getVibration();
@@ -5769,7 +5782,7 @@ public class NotificationManagerService extends SystemService {
         }
         if (buzz || beep || blink) {
             // Ignore summary updates because we don't display most of the information.
-            if (record.sbn.isGroup() && record.sbn.getNotification().isGroupSummary()) {
+            if (!blink && record.sbn.isGroup() && record.sbn.getNotification().isGroupSummary()) {
                 if (DEBUG_INTERRUPTIVENESS) {
                     Slog.v(TAG, "INTERRUPTIVENESS: "
                             + record.getKey() + " is not interruptive: summary");
@@ -5813,18 +5826,18 @@ public class NotificationManagerService extends SystemService {
             return false;
         }
         // Suppressed because it's a silent update
-        final Notification notification = record.getNotification();
+        /*final Notification notification = record.getNotification();
         if (record.isUpdate && (notification.flags & FLAG_ONLY_ALERT_ONCE) != 0) {
             return false;
         }
         // Suppressed because another notification in its group handles alerting
         if (record.sbn.isGroup() && record.getNotification().suppressAlertingDueToGrouping()) {
             return false;
-        }
-        // not if in call or the screen's on
-        if (isInCall() || mScreenOn) {
+        }*/
+        // not if the screen's on
+        /*if (isInCall() || mScreenOn) {
             return false;
-        }
+        }*/
 
         return true;
     }
