@@ -4942,12 +4942,9 @@ public final class Settings {
         /** @hide */
         private static final Validator OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
+        public static final String OMNI_QS_LAYOUT_ROWS = "omni_qs_layout_rows";
 
-        /** @hide */
-        public static final String OMNI_QS_LAYOUT_ROWS = "qs_layout_rows";
-
-       /** @hide */
-       private static final Validator OMNI_QS_LAYOUT_ROWS_VALIDATOR = ANY_INTEGER_VALIDATOR;
+        private static final Validator OMNI_QS_LAYOUT_ROWS_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
          * @hide
